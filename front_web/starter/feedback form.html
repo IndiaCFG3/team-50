@@ -1,0 +1,230 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Student Teacher Feedback Form</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core CSS -->
+<link href="style.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+<link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+
+<link href="home.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=sj5idQ2QFGcwqk9IKTxWgp-8MCv718XBXZ-1Itighmj2vCObA0a38qZ9bM5yptJ-pJY-2NIVDXgZZMSeTIhq26x3JVkRSzehwdse945EvUs" charset="UTF-8"></script><style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="form.css" rel="stylesheet">
+  </head>
+  <header>
+
+<div class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="container d-flex justify-content-between">
+    <a href="#" class="navbar-brand d-flex align-items-center">
+
+      <strong>Inqui-Lab Foundation</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+
+    </button>
+  </div>
+</div>
+</header>
+  <body class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h2>Feedback Form</h2>
+    <p class="lead">Enter The Feedback Of The Student Teachers Below</p>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12 order-md-1">
+      <h4 class="mb-3">Student Teacher Feedback Form</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Name Of The Teacher</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Name Of The Student</label>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+
+        </div>
+
+           <p class="lead">Please Enter The Details Of The Student Teachers*</p>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Class Presence Of the Student teacher ?</label>
+            <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+            <div class="invalid-feedback">
+                Input Is Mandatory.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Is The Student Teacher Confident while Teaching ?</label>
+            <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Rate The Student-Teacher Based on how often they take Initiative?</label>
+            <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+            <div class="invalid-feedback">
+                Input Is Mandatory.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Rate the student teacher based on how they prepare well in advance? ?</label>
+            <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+            <div class="invalid-feedback">
+              Input Is Mandatory.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">How helpful is the Student-Teacher ?</label>
+            <select class="custom-select d-block w-100" id="state" required>
+              <option value="">Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+            <div class="invalid-feedback">
+                Input Is Mandatory.
+            </div>
+          </div>
+        </div>
+
+
+
+        <form class="" action="" method="post">
+       <div class="form-group">
+
+         <label>Feedback(Optional)</label>
+         <textarea class="form-control" name="postBody" rows="5" cols="30"></textarea>
+       </div>
+     </form>
+     <div class="col-md-6 mb-3">
+       <label for="state">Rate The Performance of the student on a scale of 1-5</label>
+       <select class="custom-select d-block w-100" id="state" required>
+         <option value="">Choose...</option>
+         <option>1</option>
+         <option>2</option>
+         <option>3</option>
+         <option>4</option>
+         <option>5</option>
+       </select>
+       <div class="invalid-feedback">
+         Please provide a valid state.
+       </div>
+     </div>
+
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </form>
+    </div>
+
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy;Inqui-Lab</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+        <script src="form-validation.js"></script></body>
+</html>
