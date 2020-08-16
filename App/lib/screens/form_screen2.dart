@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:assembler/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:assembler/screens/form_screen_submit.dart';
-import 'package:requests/requests.dart';
 import 'package:assembler/components/rounded_button.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
-import 'dart:async';
-import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
 
 class FormScreen2 extends StatefulWidget {
   static const String id = 'whistle_screen';

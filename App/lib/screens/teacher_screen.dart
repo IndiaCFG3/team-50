@@ -3,7 +3,6 @@ import 'package:assembler/components/rounded_button.dart';
 import 'package:assembler/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'form_screen.dart';
