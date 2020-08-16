@@ -153,8 +153,31 @@ class TeacherApi(Resource):
 
 api = Api(app)
 
+class Sentiments(Resource):
+    def post(self):
+        stdata = StudentTeacher.query.filter_by(name = 'st1').all()
+        comments = []
+        for i in range(len(stdata)):
+            comments.append(stdata[i].comments)
+        polarities = [TextBlob(comment).polarity for comment in comments]
+        avg_polarity = sum(polarities)/len(polarities)
+        review = ""
+        if avg_polarity >= -1 and avg_polarity < -0.6:
+            review = "Strongly Negative"
+        elif avg_polarity >= -0.6 and avg_polarity < -0.2:
+            review = "Slightly Negative"
+        elif avg_polarity >= -0.2 and avg_polarity < 0.2:
+            review = "Neutral"
+        elif avg_polarity >= 0.2 and avg_polarity < 0.6:
+            review = "Slightly Positive"
+        else:
+            review = "Strongly Positive"
+
+        return {"review" : review, "polarities" : avg_polarity}
+            
 api.add_resource(Login,"/login")
 api.add_resource(TeacherApi, '/teacher/<string:username>')
+api.add_resource(Sentiments, '/sentiments')
 
 if __name__ == "__main__":
     app.run(debug=True)
