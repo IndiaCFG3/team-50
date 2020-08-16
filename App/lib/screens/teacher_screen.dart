@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:assembler/components/rounded_button.dart';
 import 'package:assembler/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:requests/requests.dart';
-import 'package:assembler/screens/report_screen_i.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'form_screen.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
-import 'dart:io';
 
 class TeacherScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -108,36 +104,29 @@ class _TeacherScreenState extends State<TeacherScreen> {
                               width: 150,
                               color: kTeacherColor,
                               onPressed: () async {
-                                File file = await FilePicker.getFile();
-                                var url = 'https://www.facebook.com';
+                                var url =
+                                    'http://cfg-backend-rest.herokuapp.com/login';
 
                                 // Await the http get response, then decode the json-formatted response.
-                                var r = await http.get(url);
-//                                var r =
-//                                    await Requests.post('https://google.com',
-//                                        headers: {
-//                                          'Host': 'demo.nixwhistle.com',
-//                                          'User-Agent':
-//                                              'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0',
-//                                        },
-//                                        body: {
-//                                          'email': email,
-//                                          'password': password,
-//                                        },
-//                                        verify: true);
-//                                r.raiseForStatus();
-//                                String body = r.content();
+                                var r = await http.post(
+                                  url,
+                                  headers: {
+                                    "username": "teacher1",
+                                    "password": "abcd"
+                                  },
+                                );
                                 setState(() {
                                   //showSpinner = true;
-                                  if (r.statusCode == 200) {
-                                    Fluttertoast.showToast(
-                                        msg: "Login Done",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        backgroundColor: Colors.blueGrey,
-                                        textColor: Colors.white,
-                                        fontSize: 16.0);
+                                  print("ZZZZZZZZZZZZZZ " + r.body);
+                                  if (r.body.contains("Success")) {
+//                                    Fluttertoast.showToast(
+//                                        msg: "Login Done",
+//                                        toastLength: Toast.LENGTH_SHORT,
+//                                        gravity: ToastGravity.BOTTOM,
+//                                        timeInSecForIosWeb: 1,
+//                                        backgroundColor: Colors.blueGrey,
+//                                        textColor: Colors.white,
+//                                        fontSize: 16.0);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

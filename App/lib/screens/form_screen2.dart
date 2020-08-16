@@ -316,7 +316,7 @@ class _FormScreen2State extends State<FormScreen2> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  "Overall Rating of the student",
+                                  "Overall Rating of the student teacher",
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
