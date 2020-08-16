@@ -1,21 +1,19 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:assembler/constants.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:assembler/constants.dart';
 import 'package:assembler/components/rcard.dart';
 
 class ReportScreenI extends StatefulWidget {
+  final int x = 5;
   @override
   _ReportScreenIState createState() => _ReportScreenIState();
 }
 
 class _ReportScreenIState extends State<ReportScreenI> {
-  @override
+//  @override
   Widget build(BuildContext context) {
     Map<String, double> dataMap1 = new Map();
-    dataMap1.putIfAbsent("Excellent", () => 5);
+    dataMap1.putIfAbsent("Excellent", () => widget.x.toDouble());
     dataMap1.putIfAbsent("Very Good", () => 3);
     dataMap1.putIfAbsent("Good", () => 2);
     dataMap1.putIfAbsent("Poor", () => 2);
@@ -26,6 +24,12 @@ class _ReportScreenIState extends State<ReportScreenI> {
     dataMap2.putIfAbsent("Good", () => 6);
     dataMap2.putIfAbsent("Poor", () => 8);
     dataMap2.putIfAbsent("Bad", () => 1);
+    Map<String, double> dataMap3 = new Map();
+    dataMap3.putIfAbsent("Excellent", () => 6);
+    dataMap3.putIfAbsent("Very Good", () => 4);
+    dataMap3.putIfAbsent("Good", () => 2);
+    dataMap3.putIfAbsent("Poor", () => 5);
+    dataMap3.putIfAbsent("Bad", () => 1);
     return Scaffold(
       backgroundColor: Color(0xffeeeeee),
       body: Column(
@@ -107,7 +111,7 @@ class _ReportScreenIState extends State<ReportScreenI> {
                               fontWeight: FontWeight.bold,
                               color: Colors.deepPurple),
                         ),
-                        PieChart(dataMap: dataMap1),
+                        PieChart(dataMap: dataMap3),
                       ],
                     ),
                   ),
