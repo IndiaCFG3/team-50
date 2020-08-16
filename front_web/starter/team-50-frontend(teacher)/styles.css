@@ -1,0 +1,162 @@
+/* Title Section */
+#videobase{
+  background-color: #322f3d;
+}
+#title{
+  background-color: #eeeeee;
+
+  color: #000;
+}
+
+body{
+  font-family: "Montserrat";
+}
+h1{
+  font-family: "Montserrat";
+  font-weight: bolder;
+  font-size:3rem;
+  line-height: 1.5
+
+}
+h2{
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size:2rem;
+  line-height: 1.5;
+  color:#fff;
+
+}
+
+/* Navigation Bar */
+.navbar{
+  padding:0 3rem 0;
+  background-color: #41444b;
+  line-height: 4.5rem;
+}
+.navigation-brand{
+  font-family: "Ubuntu";
+  font-weight: bold;
+  font-size: 6rem;
+  font-weight: bold;
+}
+.nav-item{
+  padding: 0 10px;
+}
+/* Download Buttons */
+.download-button{
+  margin:5% 3% 5% 3%;
+  text-align: center;
+}
+/* Title Image */
+.title{
+  width:60%;
+  margin-left: 15%;
+  transform: rotate(10deg);
+}
+.row{
+  padding: 0 3rem 2rem;
+}
+
+/* Features Section */
+#features{
+  background-color:#eeeeee;
+  padding:7% 15%;
+}
+.row{
+  text-align: center;
+}
+h3{
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.icon{
+  color: #ef8172;
+  margin-bottom: 1rem;
+}
+.fas:hover{
+  color:#e84a5f;
+}
+p{
+  padding: 0 5%;
+  color: #8f8f8f;
+}
+#testimonials{
+  padding:4% 15%;
+  text-align: center;
+   background-color: #ef8172;
+
+}
+.testimonial-image{
+  width: 10%;
+  align-items: center;
+  border-radius: rgb(255, 0, 0);
+  margin:20px;
+}
+.carouse-item{
+  padding: 7% 15%;
+}
+.book{
+  color: #000;
+}
+.book1{
+  color:#000;
+}
+em{
+  color:#fff;
+}
+#pricing{
+  padding:4% 15%;
+  text-align: center;
+    background-color:#eeeeee;
+}
+.image{
+  width:75%;
+  align-items: center;
+
+  margin:20px;
+}
+em{
+  color:#fff;
+}
+.ph{
+  color: #000;
+}
+
+.course{
+  background-color: #ebecf1;
+}
+#cta{
+  background-color: #ff4c68;
+  color: #fff;
+  padding: 7% 15%;
+  text-align: center;
+}
+.base{
+  font-family:"Ubuntu";
+  font-size: 3.5rem;
+  line-height: 1.5;
+  font-weight: bold;
+}
+#footer{
+  text-align: center;
+  padding:7% 12%;
+}
+.social{
+  margin:20px 10px;
+}
+}
+@media (max-width:1028px){
+  #title{
+    text-align: center;
+  }
+
+  }
+  .title{
+    position: static;
+    transform: rotate(0);
+    margin:0 25% 0 19.5%;
+
+  }
+
+}
