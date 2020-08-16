@@ -77,7 +77,7 @@ class StudentTeacher(db.Model):
     __tablename__ = 'studentteacher'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    teacher_name = db.Column(db.String(20), db.ForeignKey(
+    username = db.Column(db.String(20), db.ForeignKey(
         'teacher.username'), nullable=False)
     presence = db.Column(db.Integer, nullable=False)
     confidence = db.Column(db.Integer, nullable=False)
@@ -89,9 +89,9 @@ class StudentTeacher(db.Model):
     session_image = db.Column(db.String(64), default='default_image.jpg')
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    def __init__(self, name, teacher_name, presence, confidence, initiative, preperation, helpful, comments, rating):
+    def __init__(self, name, username, presence, confidence, initiative, preperation, helpful, comments, rating):
         self.name = name
-        self.teacher_name = teacher_name
+        self.username = username
         self.presence = presence
         self.confidence = confidence
         self.initiative = initiative
@@ -152,7 +152,7 @@ class TeacherApi(Resource):
         student_data = []
         for i in range(len(student)):
             student_data.append({'name': student[i].name,
-                                 'teacher_name': student[i].teacher_name,
+                                 'username': student[i].username,
                                  'presence': student[i].presence,
                                  'confidence': student[i].confidence,
                                  'initiative': student[i].initiative,
