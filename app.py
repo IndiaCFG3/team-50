@@ -12,8 +12,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'assembler'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    'DATABASE_URL', 'sqlite:///' + os.path.join(basedir, 'data.sqlite'))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
+    os.path.join(basedir, 'data.sqlite')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['DEBUG'] = True
@@ -58,7 +58,7 @@ class Teacher(db.Model):
     __tablename__ = 'teacher'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    username = db.Column(db.String(50), unique=True, nullable=False)
+    username = db.Column(db.String(50), primary_key=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
     student_teacher = db.relationship(
         'StudentTeacher', backref='teacherid', lazy=True)
@@ -198,9 +198,6 @@ class Sentiments(Resource):
 
 # db.session.add(Teacher('Rishi','teacher1','abcd'))
 # db.session.commit()
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 
 api = Api(app)

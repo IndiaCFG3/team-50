@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: cd147f4d32c9
+Revision ID: da9217220c97
 Revises: 
-Create Date: 2020-08-16 17:41:59.048606
+Create Date: 2020-08-16 19:52:45.648372
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'cd147f4d32c9'
+revision = 'da9217220c97'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,22 +23,23 @@ def upgrade():
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('username', sa.String(length=50), nullable=False),
     sa.Column('password', sa.Text(), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('username')
     )
     op.create_table('studentteacher',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
-    sa.Column('teacher_name', sa.String(length=20), nullable=False),
-    sa.Column('session_image', sa.String(length=64), nullable=True),
+    sa.Column('username', sa.String(length=20), nullable=False),
     sa.Column('presence', sa.Integer(), nullable=False),
-    sa.Column('initiative', sa.Integer(), nullable=False),
     sa.Column('confidence', sa.Integer(), nullable=False),
+    sa.Column('initiative', sa.Integer(), nullable=False),
     sa.Column('preperation', sa.Integer(), nullable=False),
     sa.Column('helpful', sa.Integer(), nullable=False),
     sa.Column('comments', sa.Text(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
+    sa.Column('session_image', sa.String(length=64), nullable=True),
     sa.Column('date', sa.DateTime(), nullable=False),
-    sa.ForeignKeyConstraint(['teacher_name'], ['teacher.username'], ),
+    sa.ForeignKeyConstraint(['username'], ['teacher.username'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
