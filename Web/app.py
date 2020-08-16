@@ -88,12 +88,12 @@ class StudentTeacher(db.Model):
 
     
 
-    def __init__(self, name, teacher_name,presence,confidence,inititative,preperation,helpful, comments, rating):
+    def __init__(self, name, teacher_name,presence,confidence,initiative,preperation,helpful, comments, rating):
         self.name = name
         self.teacher_name = teacher_name
         self.presence = presence
         self.confidence = confidence
-        self.inititative = inititative
+        self.initiative = initiative
         self.preperation = preperation
         self.helpful = helpful
         self.comments = comments
@@ -103,8 +103,8 @@ class StudentTeacher(db.Model):
     # def __repr__(self):
     #     return f"Student  : {self.name}"
 
-db.session.add(Teacher('Rishi','teacher1','abcd'))
-db.session.commit()
+# db.session.add(Teacher('Rishi','teacher1','abcd'))
+# db.session.commit()
 
 # logins = {"teacher1" : "password1",
 #         "teacher2" : "password2",
@@ -122,9 +122,10 @@ class Login(Resource):
 class TeacherApi(Resource):
     def post(self, username):
         data = request.get_json()
+        
         student_teacher = StudentTeacher(
             data['name'], username, data['classPresenceValue'], 
-            data['confidenceValue'], data['intiativeValue'], 
+            data['confidenceValue'], data['initiativeValue'], 
             data['preperationValue'], data['helpingValue'],
             data['feedbackInfo'], data['ratingValue'])
         db.session.add(student_teacher)
