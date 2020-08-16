@@ -75,7 +75,14 @@
         color: whitesmoke;
       }
     </style>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
     <script type="text/javascript">
+      // Load google charts
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
       // Load google charts
       google.charts.load("current", { packages: ["corechart"] });
       google.charts.setOnLoadCallback(drawChart);
@@ -151,7 +158,7 @@
         <i class="fas fa-poll poll nav-elements"></i>
         <div>
           <a
-            href="./teacher_lookouts/graphs.html"
+            href="./graphs.html"
             style="font-size: medium; text-align: center; color: white;"
             >Graphs</a
           >
@@ -200,8 +207,7 @@
         </h2>
       </div>
     </div>
-    <div id="piechart">
-    </div>
+    <div id="piechart"></div>
     <footer class="footer">
       <div class="footer__logo-box">
         <picture class="footer__logo">
