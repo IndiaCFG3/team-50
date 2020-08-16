@@ -109,10 +109,13 @@ class StudentTeacher(db.Model):
 
 class Login(Resource):
     def post(self):
-        if Teacher.query.filter_by(username=request.json['username']).first().password == request.json['password']:
-            return {"Status" : 'Success'}
-        else:
-            return {"Status" : "Failure"}
+        try:
+            if Teacher.query.filter_by(username=request.json['username']).first().password == request.json['password']:
+                return {"Status" : 'Success'}
+        except:
+            pass
+        return {"Status" : 'Failure'}
+        
 
 
 
