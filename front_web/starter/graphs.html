@@ -9,6 +9,7 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./css/main.css" />
 
     <!-- JS, Popper.js, and jQuery -->
     <script
@@ -26,34 +27,8 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript">
-      // Load google charts
-      google.charts.load("current", { packages: ["corechart"] });
-      google.charts.setOnLoadCallback(drawChart);
-
-      // Draw the chart and set the chart values
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ["Task", "Hours per Day"],
-          ["Work", 8],
-          ["Eat", 2],
-          ["TV", 4],
-          ["Gym", 2],
-          ["Sleep", 8],
-        ]);
-
-        // Optional; add a title and set the width and height of the chart
-        var options = { title: "My Average Day", width: 550, height: 400 };
-
-        // Display the chart inside the <div> element with id="piechart"
-        var chart = new google.visualization.PieChart(
-          document.getElementById("piechart")
-        );
-        chart.draw(data, options);
-      }
-    </script>
     <link
-      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Merienda+One&display=swap"
       rel="stylesheet"
     />
     <!--Page Title-->
@@ -82,7 +57,8 @@
           url(../img/school_1.jpg);
         overflow-x: hidden;
         text-align: center;
-        font-family: "Lato", "Sans Serif", Calibri, "Trebuchet MS", sans-serif;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
       }
 
       .nav-elements {
@@ -99,9 +75,33 @@
         color: whitesmoke;
       }
     </style>
+    <script type="text/javascript">
+      // Load google charts
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Quality Assessment", "Number of students"],
+          ["Confident", 8],
+          ["Fluent", 4],
+          //   ["Presence", 10],Initiative, advance, helpful
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = { title: "My Average Day", width: 550, height: 400 };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(
+          document.getElementById("piechart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
   </head>
 
-  <body style="font-family: 'Lato', sans-serif;">
+  <body style="margin: -30px;">
     <!--SideNavBar-->
     <div class="sidenav">
       <!--Profile-->
@@ -109,7 +109,7 @@
         <i class="fa fa-user-circle profile profile"></i>
         <div>
           <a
-            href="#"
+            href="./homepage.html"
             style="font-size: medium; text-align: center; color: white;"
             >Profile</a
           >
@@ -121,7 +121,7 @@
         <i class="fas fa-user user nav-elements"></i>
         <div>
           <a
-            href="#"
+            href="./teachersinfo.html"
             style="font-size: medium; text-align: center; color: white;"
             >Our Teahers</a
           >
@@ -131,7 +131,7 @@
         <i class="fas fa-users users nav-elements"></i>
         <div>
           <a
-            href="#"
+            href="./student-teacher.html"
             style="font-size: medium; text-align: center; color: white;"
             >Our Student Teachers</a
           >
@@ -141,7 +141,7 @@
         <i class="fas fa-images images nav-elements"></i>
         <div>
           <a
-            href="#"
+            href="./photos.html"
             style="font-size: medium; text-align: center; color: white;"
             >Photos</a
           >
@@ -151,7 +151,7 @@
         <i class="fas fa-poll poll nav-elements"></i>
         <div>
           <a
-            href="#"
+            href="./teacher_lookouts/graphs.html"
             style="font-size: medium; text-align: center; color: white;"
             >Graphs</a
           >
@@ -185,13 +185,69 @@
             height: 4cm;
             width: 10cm;
             padding-left: 200px;
-            padding-top: 20px;
+            padding-top: 30px;
           "
         />
-        <h2 style="color: white; padding-left: 140px; padding-top: 5px;">
+        <h2
+          style="
+            color: white;
+            padding-left: 200px;
+            padding-top: 15px;
+            font-size: 20px;
+          "
+        >
           InquiLab Foundation
         </h2>
       </div>
     </div>
+    <div id="piechart">
+    </div>
+    <footer class="footer">
+      <div class="footer__logo-box">
+        <picture class="footer__logo">
+          <source
+            srcset="
+              img/logo-green-small-1x.png 1x,
+              img/logo-green-small-2x.png 2x
+            "
+            media="(max-width: 37.5em)"
+          />
+          <img
+            srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+            alt="Full logo"
+            src="img/logo-green-2x.png"
+          />
+        </picture>
+      </div>
+      <div class="row">
+        <div class="col-1-of-2">
+          <div class="footer__navigation">
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">Company</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Contact us</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Carrers</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Privacy policy</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Terms</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-1-of-2">
+          <p class="footer__copyright">
+            Built for <a href="#" class="footer__link">Inqui-Lab</a> with love
+            from <a href="#" class="footer__link">Assemblers</a>.
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
