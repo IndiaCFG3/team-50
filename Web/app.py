@@ -76,24 +76,24 @@ class StudentTeacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     teacher_name = db.Column(db.String(20), db.ForeignKey('teacher.username'), nullable=False)
-    session_image = db.Column(db.String(64), default='default_image.jpg')
     presence = db.Column(db.Integer, nullable=False)
-    initiative = db.Column(db.Integer, nullable=False)
     confidence = db.Column(db.Integer, nullable=False)
+    initiative = db.Column(db.Integer, nullable=False)
     preperation = db.Column(db.Integer, nullable=False)
     helpful = db.Column(db.Integer, nullable=False)
     comments = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Integer, nullable=False)
+    session_image = db.Column(db.String(64), default='default_image.jpg')
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     
 
-    def __init__(self, name, teacher_name,presence,confidence,inititative,preperation,helpful, comments, rating):
+    def __init__(self, name, teacher_name,presence,confidence,initiative,preperation,helpful, comments, rating):
         self.name = name
         self.teacher_name = teacher_name
         self.presence = presence
         self.confidence = confidence
-        self.inititative = inititative
+        self.initiative = initiative
         self.preperation = preperation
         self.helpful = helpful
         self.comments = comments
@@ -102,9 +102,6 @@ class StudentTeacher(db.Model):
 
     # def __repr__(self):
     #     return f"Student  : {self.name}"
-
-db.session.add(Teacher('Rishi','teacher1','abcd'))
-db.session.commit()
 
 # logins = {"teacher1" : "password1",
 #         "teacher2" : "password2",
@@ -123,8 +120,8 @@ class TeacherApi(Resource):
     def post(self, username):
         data = request.get_json()
         student_teacher = StudentTeacher(
-            data['name'], username, data['classPresenceValue'], 
-            data['confidenceValue'], data['intiativeValue'], 
+            data['name'], data['username'], data['classPresenceValue'], 
+            data['confidenceValue'], data['initiativeValue'], 
             data['preperationValue'], data['helpingValue'],
             data['feedbackInfo'], data['ratingValue'])
         db.session.add(student_teacher)
@@ -141,10 +138,13 @@ class TeacherApi(Resource):
         for i in range(len(student)):
             student_data.append({'name':student[i].name,
         'teacher_name' : student[i].teacher_name,
+        'presence' : student[i].presence,
+        'confidence' : student[i].confidence,
+        'initiative' : student[i].initiative,
+        'preperation' : student[i].preperation,
+        'helpful' : student[i].helpful,
         'comments' : student[i].comments,
-        'availability_of_materials' : student[i].availability_of_materials,
-        'leadership' : student[i].leadership,
-        'confidence' : student[i].confidence})
+        'rating' : student[i].rating})
         
         if not teacher:
             return {'message': 'No teacher found!'}
@@ -160,9 +160,10 @@ class TeacherApi(Resource):
 
 api = Api(app)
 
+
 class Sentiments(Resource):
-    def post(self):
-        stdata = StudentTeacher.query.filter_by(name = 'st1').all()
+    def post(self,username):
+        stdata = StudentTeacher.query.filter_by(name = username).all()
         comments = []
         for i in range(len(stdata)):
             comments.append(stdata[i].comments)
@@ -181,10 +182,15 @@ class Sentiments(Resource):
             review = "Strongly Positive"
 
         return {"review" : review, "polarities" : avg_polarity}
-            
+
+#db.session.add(Teacher('Rishi','teacher1','abcd'))
+#db.session.commit()
+
+
 api.add_resource(Login,"/login")
 api.add_resource(TeacherApi, '/teacher/<string:username>')
-api.add_resource(Sentiments, '/sentiments')
+api.add_resource(Sentiments, '/sentiments/<string:username>')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
