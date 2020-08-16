@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:assembler/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:assembler/screens/form_screen_submit.dart';
-import 'package:requests/requests.dart';
 import 'form_screen2.dart';
 
 class FormScreen extends StatefulWidget {
