@@ -165,7 +165,7 @@ class TeacherApi(Resource):
 
         return {'teacher': user_data,'student': student_data}
 
-api = Api(app)
+
 
 
 class Sentiments(Resource):
@@ -193,7 +193,7 @@ class Sentiments(Resource):
 #db.session.add(Teacher('Rishi','teacher1','abcd'))
 #db.session.commit()
 
-
+api = Api(app)
 api.add_resource(Login,"/login")
 api.add_resource(TeacherApi, '/teacher/<string:username>')
 api.add_resource(Sentiments, '/sentiments/<string:username>')
