@@ -198,6 +198,9 @@ class Sentiments(Resource):
 
 # db.session.add(Teacher('Rishi','teacher1','abcd'))
 # db.session.commit()
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 api = Api(app)
