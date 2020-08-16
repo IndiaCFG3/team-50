@@ -34,6 +34,7 @@ dependencies:
   animated_text_kit: ^2.0.0
   http: ^0.12.2
   pie_chart: ^3.1.1
+  file_picker: ^1.13.3
 
 dev_dependencies:
   flutter_test:

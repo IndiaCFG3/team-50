@@ -9,6 +9,9 @@ import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'form_screen.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/widgets.dart';
+import 'dart:io';
 
 class TeacherScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -105,6 +108,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
                               width: 150,
                               color: kTeacherColor,
                               onPressed: () async {
+                                File file = await FilePicker.getFile();
                                 var url = 'https://www.facebook.com';
 
                                 // Await the http get response, then decode the json-formatted response.

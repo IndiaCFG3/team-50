@@ -3,6 +3,13 @@ import 'package:assembler/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:assembler/screens/form_screen_submit.dart';
 import 'package:requests/requests.dart';
+import 'package:assembler/components/rounded_button.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/widgets.dart';
+import 'dart:async';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 
 class FormScreen2 extends StatefulWidget {
   static const String id = 'whistle_screen';
@@ -347,6 +354,14 @@ class _FormScreen2State extends State<FormScreen2> {
                           ),
                         ),
                       ),
+                      RoundedButton(
+                        title: 'Upload Image',
+                        width: 150,
+                        color: kTeacherColor,
+                        onPressed: () async {
+                          File file = await FilePicker.getFile();
+                        },
+                      ),
                     ],
                   ),
                 ), //Buttons
@@ -389,7 +404,8 @@ class _FormScreen2State extends State<FormScreen2> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return FormScreenSubmit(
-                                          tipNumber: "1", //tipNumber,
+                                          tipNumber:
+                                              "8V63817GD187", //tipNumber,
                                           secretCode: '1', //secretCode,
                                         );
                                       },
