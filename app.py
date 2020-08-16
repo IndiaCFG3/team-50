@@ -1,3 +1,4 @@
+from datetime import datetime
 from textblob import TextBlob
 import os
 from flask import Flask, request, jsonify
@@ -13,6 +14,7 @@ app.config['SECRET_KEY'] = 'assembler'
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
     os.path.join(basedir, 'data.sqlite')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['DEBUG'] = True
 # app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -34,7 +36,7 @@ Migrate(app, db)
 # login_manager.init_app(app)
 # login_manager.login_view = 'doctors.login'
 
-#from kindlycare.users.views import users
+# from kindlycare.users.views import users
 # from kindlycare.core.views import core
 # from kindlycare.hospitals.views import hospitals
 # from kindlycare.doctors.views import doctors
@@ -44,7 +46,6 @@ Migrate(app, db)
 # app.register_blueprint(hospitals)
 # app.register_blueprint(doctors)
 
-from datetime import datetime
 
 # relate = db.Table('relate',
 #         db.Column('doctor_id', db.Integer, db.ForeignKey('doctors.id')),
@@ -52,16 +53,18 @@ from datetime import datetime
 
 ########### MODELS ##########
 
+
 class Teacher(db.Model):
     __tablename__ = 'teacher'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    username = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(50), primary_key=True, nullable=False)
     password = db.Column(db.Text, nullable=False)
-    student_teacher = db.relationship('StudentTeacher', backref='teacherid', lazy=True)
-    #services = db.Column(db.ARRAY(String))
+    student_teacher = db.relationship(
+        'StudentTeacher', backref='teacherid', lazy=True)
+    # services = db.Column(db.ARRAY(String))
 
-    def __init__(self,name,username,password):
+    def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
@@ -70,12 +73,12 @@ class Teacher(db.Model):
         return f"Teacher Name is : {self.name}"
 
 
-
 class StudentTeacher(db.Model):
     __tablename__ = 'studentteacher'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    teacher_name = db.Column(db.String(20), db.ForeignKey('teacher.username'), nullable=False)
+    username = db.Column(db.String(20), db.ForeignKey(
+        'teacher.username'), nullable=False)
     presence = db.Column(db.Integer, nullable=False)
     confidence = db.Column(db.Integer, nullable=False)
     initiative = db.Column(db.Integer, nullable=False)
@@ -86,11 +89,9 @@ class StudentTeacher(db.Model):
     session_image = db.Column(db.String(64), default='default_image.jpg')
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    
-
-    def __init__(self, name, teacher_name,presence,confidence,initiative,preperation,helpful, comments, rating):
+    def __init__(self, name, username, presence, confidence, initiative, preperation, helpful, comments, rating):
         self.name = name
-        self.teacher_name = teacher_name
+        self.username = username
         self.presence = presence
         self.confidence = confidence
         self.initiative = initiative
@@ -98,75 +99,84 @@ class StudentTeacher(db.Model):
         self.helpful = helpful
         self.comments = comments
         self.rating = rating
-     
 
     # def __repr__(self):
     #     return f"Student  : {self.name}"
+
+# db.session.add(Teacher('Rishi','teacher1','abcd'))
+# db.session.commit()
 
 # logins = {"teacher1" : "password1",
 #         "teacher2" : "password2",
 #         "teacher3" : "password3"}
 
+
 class Login(Resource):
     def post(self):
         try:
             if Teacher.query.filter_by(username=request.json['username']).first().password == request.json['password']:
-                return {"Status" : 'Success'}
+                return {"Status": 'Success'}
         except:
             pass
-        return {"Status" : 'Failure'}
-        
+        return {"Status": 'Failure'}
 
+
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+        teacher = Teacher(data['name'], data['username'], data['password'])
+        db.session.add(teacher)
+        db.session.commit()
+        return {'message': 'Teacher success'}
 
 
 class TeacherApi(Resource):
     def post(self, username):
         data = request.get_json()
+
         student_teacher = StudentTeacher(
-            data['name'], data['username'], data['classPresenceValue'], 
-            data['confidenceValue'], data['initiativeValue'], 
+            data['name'], data['username'], data['classPresenceValue'],
+            data['confidenceValue'], data['initiativeValue'],
             data['preperationValue'], data['helpingValue'],
             data['feedbackInfo'], data['ratingValue'])
         db.session.add(student_teacher)
         db.session.commit()
 
-        return {'message':'Student Teacher created successfully'}
+        return {'message': 'Student Teacher created successfully'}
 
-    def get(self,username):
+    def get(self, username):
         teacher = Teacher.query.filter_by(username=username).first()
         student = StudentTeacher.query.filter_by(teacher_name=username).all()
         # student = StudentTeacher.query.get(1)
         print(student)
         student_data = []
         for i in range(len(student)):
-            student_data.append({'name':student[i].name,
-        'teacher_name' : student[i].teacher_name,
-        'presence' : student[i].presence,
-        'confidence' : student[i].confidence,
-        'initiative' : student[i].initiative,
-        'preperation' : student[i].preperation,
-        'helpful' : student[i].helpful,
-        'comments' : student[i].comments,
-        'rating' : student[i].rating})
-        
+            student_data.append({'name': student[i].name,
+                                 'username': student[i].username,
+                                 'presence': student[i].presence,
+                                 'confidence': student[i].confidence,
+                                 'initiative': student[i].initiative,
+                                 'preperation': student[i].preperation,
+                                 'helpful': student[i].helpful,
+                                 'comments': student[i].comments,
+                                 'rating': student[i].rating})
+
         if not teacher:
             return {'message': 'No teacher found!'}
         # student_data = {}
         # student_data['name'] = student.name
         # student_data['confidence'] = student.confidence
-        
+
         user_data = {}
         user_data['name'] = teacher.name
         user_data['username'] = teacher.username
 
-        return {'teacher': user_data,'student': student_data}
-
-api = Api(app)
+        return {'teacher': user_data, 'student': student_data}
 
 
 class Sentiments(Resource):
-    def post(self,username):
-        stdata = StudentTeacher.query.filter_by(name = username).all()
+    def post(self, username):
+        stdata = StudentTeacher.query.filter_by(name=username).all()
         comments = []
         for i in range(len(stdata)):
             comments.append(stdata[i].comments)
@@ -184,15 +194,17 @@ class Sentiments(Resource):
         else:
             review = "Strongly Positive"
 
-        return {"review" : review, "polarities" : avg_polarity}
+        return {"review": review, "polarities": avg_polarity}
 
-#db.session.add(Teacher('Rishi','teacher1','abcd'))
-#db.session.commit()
+# db.session.add(Teacher('Rishi','teacher1','abcd'))
+# db.session.commit()
 
 
-api.add_resource(Login,"/login")
+api = Api(app)
+api.add_resource(Login, "/login")
 api.add_resource(TeacherApi, '/teacher/<string:username>')
 api.add_resource(Sentiments, '/sentiments/<string:username>')
+api.add_resource(Register, '/addteacher')
 
 
 if __name__ == "__main__":

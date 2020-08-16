@@ -1,0 +1,7 @@
+Flask
+Flask-Migrate
+Flask-RESTful
+Flask-SQLAlchemy
+textblob
+uwsgi
+psycopg2
