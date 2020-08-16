@@ -71,35 +71,40 @@ class Teacher(db.Model):
 
 
 
-
 class StudentTeacher(db.Model):
     __tablename__ = 'studentteacher'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
-    teacher_name = db.Column(db.String(20), db.ForeignKey('teacher.username'),nullable=False)
+    teacher_name = db.Column(db.String(20), db.ForeignKey('teacher.username'), nullable=False)
     session_image = db.Column(db.String(64), default='default_image.jpg')
-    comments = db.Column(db.Text, nullable=False)
-    availability_of_materials = db.Column(db.Integer, nullable=False)
-    leadership = db.Column(db.Integer, nullable=False)
+    presence = db.Column(db.Integer, nullable=False)
+    initiative = db.Column(db.Integer, nullable=False)
     confidence = db.Column(db.Integer, nullable=False)
+    preperation = db.Column(db.Integer, nullable=False)
+    helpful = db.Column(db.Integer, nullable=False)
+    comments = db.Column(db.Text, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     
 
-    def __init__(self, name, teacher_name, comments, availability_of_materials, leadership, confidence):
+    def __init__(self, name, teacher_name,presence,confidence,inititative,preperation,helpful, comments, rating):
         self.name = name
         self.teacher_name = teacher_name
-        self.comments = comments
-        self.availability_of_materials = availability_of_materials
-        self.leadership = leadership
+        self.presence = presence
         self.confidence = confidence
+        self.inititative = inititative
+        self.preperation = preperation
+        self.helpful = helpful
+        self.comments = comments
+        self.rating = rating
      
 
     # def __repr__(self):
     #     return f"Student  : {self.name}"
 
-# db.session.add(Teacher('Rishi','teacher1','abcd'))
-# db.session.commit()
+db.session.add(Teacher('Rishi','teacher1','abcd'))
+db.session.commit()
 
 # logins = {"teacher1" : "password1",
 #         "teacher2" : "password2",
@@ -117,9 +122,11 @@ class Login(Resource):
 class TeacherApi(Resource):
     def post(self, username):
         data = request.get_json()
-        print(data['name'], data['username'], data['comments'], data['availabilty'], data['leadership'], data['confidence'])
         student_teacher = StudentTeacher(
-            data['name'], data['username'], data['comments'], data['availabilty'], data['leadership'], data['confidence'])
+            data['name'], username, data['classPresenceValue'], 
+            data['confidenceValue'], data['intiativeValue'], 
+            data['preperationValue'], data['helpingValue'],
+            data['feedbackInfo'], data['ratingValue'])
         db.session.add(student_teacher)
         db.session.commit()
 
