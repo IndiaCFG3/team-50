@@ -103,12 +103,9 @@ class StudentTeacher(db.Model):
     # def __repr__(self):
     #     return f"Student  : {self.name}"
 
-<<<<<<< HEAD
 # db.session.add(Teacher('Rishi','teacher1','abcd'))
 # db.session.commit()
 
-=======
->>>>>>> 579dedd7c0db444955b3f7aa0f77f853ff2a1229
 # logins = {"teacher1" : "password1",
 #         "teacher2" : "password2",
 #         "teacher3" : "password3"}
