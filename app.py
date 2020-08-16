@@ -198,12 +198,32 @@ class Sentiments(Resource):
 
 # db.session.add(Teacher('Rishi','teacher1','abcd'))
 # db.session.commit()
+class Confidence(Resource):
+    def get(self):
+        confdata = StudentTeacher.query.all()
+        confidences = []
+        for i in range(len(confdata)):
+            confidences.append(confdata[i].confidence) 
+        mydict = {"Excellent" : 0,"Very Good" : 0, "Good" : 0, "Poor" : 0, "Bad" : 0}
+        for confidence in confidences:
+            if confidence == 5:
+                mydict["Excellent"] += 1
+            elif confidence == 4:
+                mydict["Very Good"] += 1
+            elif confidence == 3:
+                mydict["Good"] += 1
+            elif confidence == 2:
+                mydict["Poor"] += 1
+            else:
+                mydict["Bad"] += 1
 
-
+        return mydict
+    
 api = Api(app)
 api.add_resource(Login, "/login")
 api.add_resource(TeacherApi, '/teacher/<string:username>')
 api.add_resource(Sentiments, '/sentiments/<string:username>')
+api.add_resource(Confidence, '/confidence')
 api.add_resource(Register, '/addteacher')
 
 
